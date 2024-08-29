@@ -1,0 +1,13 @@
+*.egg-info
+__pycache__
+dist/
+*.pyc
+.coverage
+coverage.xml
+.pytest_cache/
+.env
+venv
+env
+.idea
+*.swp
+db.sqlite3
