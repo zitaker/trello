@@ -11,3 +11,4 @@ env
 .idea
 *.swp
 db.sqlite3
+*~

@@ -1,0 +1,6 @@
+docker-compose
+Sphinx
+sphinx_rtd_theme
+coloredlogs
+pytest
+flake8
