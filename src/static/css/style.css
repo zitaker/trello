@@ -1,0 +1,16 @@
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-left {
+        margin-right: 20px;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 15px;
+    }
+
+    .nav-right .nav-item {
+        margin-left: 15px;
+    }
