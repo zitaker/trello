@@ -1,18 +1,19 @@
-# Используем официальный образ Python
+# Using the official Python image
 FROM python:3.10-slim
 
-# Устанавливаем зависимости
+# Installing dependencies
 RUN pip install --upgrade pip
 RUN pip install django
+RUN pip install django-allauth
 
-# Создаем рабочую директорию
+# Creating a working directory
 WORKDIR /app
 
-# Копируем проект в контейнер
+# Copy the project to the container
 COPY . /app
 
-# Открываем порт 8000 для доступа к Django
+# Opening port 8000 to access Django
 EXPOSE 8000
 
-# Команда для запуска сервера разработки Django
+# The command to start the Django development server
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
