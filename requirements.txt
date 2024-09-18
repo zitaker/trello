@@ -1,4 +1,4 @@
-docker-compose
+docker-composer-v2
 coloredlogs
 pytest
 flake8
