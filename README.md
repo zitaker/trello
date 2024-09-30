@@ -7,5 +7,5 @@ It is a learning project for me in the status of Tech Lead, as well as for other
 ### Minimum requirements:
 1) docker-composer-v2.
 
-You can open it on: ```http://127.0.0.1:8000/```  
+You can open it on: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
