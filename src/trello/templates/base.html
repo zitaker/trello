@@ -22,8 +22,8 @@
             color: white;
         }
         .container-custom {
-            max-width: 1200px; /* Ограничиваем ширину страницы */
-            margin: 0 auto; /* Центрируем содержимое */
+            max-width: 1200px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -43,8 +43,14 @@
                     <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
                 </ul>
                 <ul class="navbar-nav nav-right">
-                    <li class="nav-item"><a class="nav-link" href="#">Log in</a></li>
-                    <li class="nav-item"><a class="btn btn-get-trello" href="#">Get Trello for free</a></li>
+                    {% if user.is_authenticated %}
+                        <!-- If the user is logged in, we show the exit button -->
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Log out</a></li>
+                    {% else %}
+                        <!-- If the user is not logged in, we show links to log in and register -->
+                        <li class="nav-item"><a class="nav-link" href="{% url 'account_login' %}">Log in</a></li>
+                        <li class="nav-item"><a class="btn btn-get-trello" href="{% url 'account_signup' %}">Get Trello for free</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

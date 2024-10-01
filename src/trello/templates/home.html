@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Welcome to the Trello Clone</h1>
-    <p>This is a Django-powered page that mimics Trello's UI.</p>
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to the Trello Clone</h1>
+        <p class="lead">This is a Django-powered page that mimics Trello's UI.</p>
+        
+        {% if user.is_authenticated %}
+            <p class="lead">Hello, {{ user.username }}! You are logged in.</p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Go to your boards</a>
+        {% else %}
+            <p class="lead">To start using the app, please <a href="{% url 'account_login' %}">log in</a> or <a href="{% url 'account_signup' %}">sign up</a>.</p>
+            <a class="btn btn-primary btn-lg" href="{% url 'account_signup' %}" role="button">Get Started</a>
+        {% endif %}
+    </div>
 {% endblock %}
