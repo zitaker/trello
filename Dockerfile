@@ -5,6 +5,7 @@ FROM python:3.10-slim
 RUN pip install --upgrade pip
 RUN pip install django
 RUN pip install django-allauth
+RUN pip install python-dotenv
 
 # Creating a working directory
 WORKDIR /app

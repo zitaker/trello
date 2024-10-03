@@ -9,6 +9,6 @@ coverage.xml
 venv
 env
 .idea
-*.swp
+*.sw*
 db.sqlite3
 *~
