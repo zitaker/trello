@@ -9,8 +9,12 @@ services:
       - .:/app
     environment:
       - PYTHONPATH=/app/src
+      - DJANGO_SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME}
+      - DJANGO_SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL}
+      - DJANGO_SUPERUSER_PASSWORD=${DJANGO_SUPERUSER_PASSWORD}
     command: >
       sh -c "
       python3 manage.py makemigrations &&
       python3 manage.py migrate &&
+      python manage.py createsuperuser --noinput &&
       python manage.py runserver 0.0.0.0:8000"
