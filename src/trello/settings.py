@@ -58,6 +58,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = EMAIL_HOST
 EMAIL_PORT = EMAIL_PORT
 EMAIL_USE_TLS = EMAIL_USE_TLS
