@@ -11,7 +11,7 @@ Trello uses a project management paradigm known as kanban.
 ---
 
 ### How to take a task:
-1) let us know that you have accepted the task for completion;
+1) write that you have accepted the task for completion;
 2) specify the deadline for completing the task (if you don't have time or can't do it anymore, write and negotiate, it's okay.
 In IT, everyone is very friendly and you need to be able to contact people.
 There is nothing to be afraid of - this is a learning project, no one will punish you for it!
