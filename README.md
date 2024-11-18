@@ -42,4 +42,6 @@ You can open it on: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 ---
 ### Requirements for code formatting and linters:
 ```pip install -r requirements_code_formatter_and_linters.txt```
+
+### Using a code formatter and linters
 ```make black_flake8_pylint_ruff```
