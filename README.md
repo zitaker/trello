@@ -22,7 +22,8 @@ There is nothing to be afraid of - this is a learning project, no one will punis
 1) specify the data type (I recommend using the built-in widget (Pyright) in Visual Studio Code to enter text to make it easier to work,
 or any other, Pycharm is already built in natively;
 2) specify Google-style docstrings;
-3) use linters and code formatters.
+3) use linters and code formatters;
+4) if you have any questions, please write messages to me, my contacts are listed in the profile.
 
 ---
 
