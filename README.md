@@ -4,7 +4,7 @@ This project has the status = "pet-project".
 
 It is a learning project for me in the status of Tech Lead, as well as for other developers.
 
-Development using the TDD method.
+Development using the TDD and KISS method.
 
 Trello uses a project management paradigm known as kanban.
 
