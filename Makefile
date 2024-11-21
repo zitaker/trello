@@ -1,5 +1,5 @@
 black_flake8_pylint_ruff:
-	black --line-length 80 . && \
+	black --line-length 80 src && \
 	flake8 src/ && \
 	pylint src/ && \
 	ruff check src/		# Code formatter and error detection.
