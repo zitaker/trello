@@ -33,7 +33,7 @@ or any other, Pycharm is already built in natively;
 
 ### Use in development:
 ```make start```  
-You can open it on: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+You can open it on: [http://127.0.0.1:8000/boards/](http://127.0.0.1:8000/boards/)
 
 ---
 
