@@ -19,7 +19,7 @@ There is nothing to be afraid of - this is a learning project, no one will punis
 ---
 
 ### Design requirements for the project:
-1) specify the data type (I recommend using the built-in widget (Pyright) in Visual Studio Code to enter text to make it easier to work,
+1) specify the data type (I recommend using (Mypy) or the built-in widget (Pyright) in Visual Studio Code to enter text to make it easier to work,
 or any other, Pycharm is already built in natively;
 2) specify Google-style docstrings;
 3) use linters and code formatters;
