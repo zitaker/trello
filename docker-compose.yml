@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  app:
+    # Configuring the container assembly
+    build:
+      context: .  # The context for the build
+      args:
+        DEV_ENV: "true"  # The argument for Dockerfile (indicates that the development environment is active)
+      dockerfile: Dockerfile  # We use Dockerfile to build the container
+
+    # Proxy for mounting a local folder into a container
+    volumes:
+      - ./src:/app/src  # Mounting the local src folder to the container at the path /app/src
+
+    # Opening port 8000 to access the Django server
+    ports:
+      - "8000:8000"  # Proxy port: open port 8000 on the host and connect to port 8000 inside the container
+
+    # Setting environment variables for the container
+    environment:
+      - DJANGO_SETTINGS_MODULE=trello.settings  # Specifying the Django settings module
+
+    # Commands that are executed in the container at startup
+    command: >
+      sh -c "
+        # First, we perform database migrations
+        python3 manage.py makemigrations &&
+        python3 manage.py migrate &&
+
+        # Then we start the Django server
+        python3 manage.py runserver 0.0.0.0:8000
+      "

@@ -1,13 +1,13 @@
-black_flake8_pylint_ruff:
-	black --line-length 80 src && \
+mypy_black_flake8_pylint:	# Type annotation validation, code formatting, and error detection.
+	mypy src/ && \
+	black --line-length 80 src/ && \
 	flake8 src/ && \
-	pylint src/ && \
-	ruff check src/		# Code formatter and error detection.
+	pylint src/
 
 
 DOCKER_COMPOSE := $(shell which docker-compose || which docker)
 
-start:
+start:	# Launching the docker
 ifeq ($(DOCKER_COMPOSE),/usr/local/bin/docker-compose)
 	@echo "Using docker-compose"
 	docker-compose up --build
@@ -16,5 +16,5 @@ else
 	docker compose up --build
 endif
 
-test:
+test:	# Running tests
 	pytest tests/
