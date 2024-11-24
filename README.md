@@ -19,7 +19,7 @@ There is nothing to be afraid of - this is a learning project, no one will punis
 ---
 
 ### Design requirements for the project:
-1) add type annotations (I recommend using (Mypy is embedded in the project;
+1) add type annotations (Mypy is embedded in the project);
 2) use linters (Flake8 and Pylint are already embedded in the project);
 3) use a code formatter (Black embedded in the project);
 4) specify Google-style docstrings;
