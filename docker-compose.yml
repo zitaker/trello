@@ -1,7 +1,8 @@
-version: "3.8"
+version: "3.10"
 
 services:
   app:
+    container_name: trello-pet-project  # Setting a name for the container
     # Configuring the container assembly
     build:
       context: .  # The context for the build
@@ -12,6 +13,8 @@ services:
     # Proxy for mounting a local folder into a container
     volumes:
       - ./src:/app/src  # Mounting the local src folder to the container at the path /app/src
+      - ./setup.cfg:/app/src/setup.cfg
+      - ./Makefile:/app/src/Makefile
 
     # Opening port 8000 to access the Django server
     ports:

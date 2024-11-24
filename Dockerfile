@@ -22,6 +22,9 @@ RUN pip install --upgrade pip \
 # Copying all project files
 COPY . .
 
+# Copy the file to run code checks in the container
+COPY setup.cfg /app/src
+
 # Setting environment variables
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \

@@ -19,11 +19,12 @@ There is nothing to be afraid of - this is a learning project, no one will punis
 ---
 
 ### Design requirements for the project:
-1) add type annotations (I recommend using (Mypy) or the built-in widget (Pyright) in Visual Studio Code to enter text to make it easier to work,
-or any other, Pycharm is already built in natively;
-2) specify Google-style docstrings;
-3) use linters and code formatters;
-4) if you have any questions, please write messages to me, my contacts are listed in the profile.
+1) add type annotations (I recommend using (Mypy is embedded in the project;
+2) use linters (Flake8 and Pylint are already embedded in the project);
+3) use a code formatter (Black embedded in the project);
+4) specify Google-style docstrings;
+5) the project uses python 3.13.0. If you have a different version of the language, I recommend installing (pyenv) and installing python 3.13.0 in pyenv;
+6) if you have any questions, please write messages to me, my contacts are listed in the profile.
 
 ---
 
@@ -45,4 +46,4 @@ You can open it on: [http://0.0.0.0:8000/boards/](http://0.0.0.0:8000/boards/)
 ```pip install -r requirements-dev.txt```
 
 ### Checking type annotations, running the code formatter and linters:
-```make mypy_black_flake8_pylint```
+```make check```
