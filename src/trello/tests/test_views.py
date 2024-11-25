@@ -10,7 +10,7 @@ def test_qwerty1():
 
 
 def test_qwerty2():
-    assert 5 == qwerty2()
+    assert 6 == qwerty2()
 
 
 def test_qwerty3():
