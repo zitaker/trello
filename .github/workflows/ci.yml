@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker
+        run: |
+          docker --version
+          docker compose version
+
+      - name: Build and start containers
+        run: docker compose up --build -d
+
+      - name: Run tests
+        run: make test
+
+      - name: Stop and clean up
+        run: docker compose down
