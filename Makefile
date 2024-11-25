@@ -17,5 +17,13 @@ DOCKER_COMPOSE := $(shell which docker-compose || which docker)
 start:	# Launching the docker
 	docker compose up --build
 
-test:	# Running tests
-	pytest tests/
+test:  # Running tests
+	@if docker ps -q -f name=trello-pet-project; then \
+		docker exec -it trello-pet-project /bin/bash -c "pytest -x --tb=short -v"; \
+	elif $(DOCKER_COMPOSE) ps -q; then \
+		$(DOCKER_COMPOSE) up --build -d && \
+		$(DOCKER_COMPOSE) exec app pytest -x --tb=short -v && \
+		$(DOCKER_COMPOSE) down; \
+	else \
+		pytest -x --tb=short -v; \
+	fi

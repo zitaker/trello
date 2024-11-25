@@ -5,6 +5,7 @@ flake8-django
 pylint==3.3.1
 django-linter
 django-stubs
-pytest
+pytest==8.3.3
+pytest-django
 make
 astroid==3.3.5
