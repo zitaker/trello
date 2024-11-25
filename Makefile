@@ -28,5 +28,5 @@ test:  # Running tests
 		pytest -x --tb=short -v; \
 	fi
 
-test1:  # Run tests inside Docker container
+ci_cd_test:  # Run tests inside Docker container for CI/CD
 	@docker compose exec -T app pytest -x --tb=short -v
