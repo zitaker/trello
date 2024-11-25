@@ -27,3 +27,6 @@ test:  # Running tests
 	else \
 		pytest -x --tb=short -v; \
 	fi
+
+test1:  # Run tests inside Docker container
+	@docker compose exec -T app pytest -x --tb=short -v

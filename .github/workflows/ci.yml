@@ -24,7 +24,7 @@ jobs:
         run: docker compose up --build -d
 
       - name: Run tests
-        run: make test
+        run: make test1
 
       - name: Stop and clean up
         run: docker compose down
