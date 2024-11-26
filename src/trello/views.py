@@ -4,11 +4,14 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 def home(request):
+    """Redirect to boards page"""
+    print(f"Redirecting request from {request.path}")
     return HttpResponseRedirect("/boards/")
 
 
 def hello_world(request):
-    """hello world"""
+    # """hello world"""
+    print(f"Request received at: {request.path}")
     return HttpResponse("Hello, World!")
 
 
