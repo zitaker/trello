@@ -20,7 +20,7 @@ def qwerty1():
     return 5
 
 
-def qwerty2():
+def qwerty2() -> int:
     return 5
 
 
