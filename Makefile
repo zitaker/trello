@@ -33,3 +33,9 @@ ci_cd_test:  # Run tests inside Docker container for CI/CD
 
 ci_cd_mypy:  # Checking type annotations inside a Docker container for CI/CD
 	@docker compose exec -T app mypy .
+
+ci_cd_flake8:  # Running the flake8 linter inside a Docker container for CI/CD
+	@docker compose exec -T app flake8 .
+
+ci_cd_pylint:  # Running the pylint linter inside a Docker container for CI/CD
+	@docker compose exec -T app pylint .
