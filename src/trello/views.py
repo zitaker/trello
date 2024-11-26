@@ -24,7 +24,7 @@ def qwerty2() -> int:
     return 5
 
 
-def qwerty3() -> str:
+def qwerty3() -> int:
     return 5
 
 
