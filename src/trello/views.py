@@ -10,7 +10,7 @@ def home(request):
 
 
 def hello_world(request):
-    # """hello world"""
+    """hello world"""
     print(f"Request received at: {request.path}")
     return HttpResponse("Hello, World!")
 
