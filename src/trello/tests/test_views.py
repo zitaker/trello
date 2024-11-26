@@ -18,9 +18,9 @@ def test_qwerty2():
     assert 5 == qwerty2()
 
 
-# def test_qwerty3():
-#     """qwerty"""
-#     assert 5 == qwerty3()
+def test_qwerty3():
+    """qwerty"""
+    assert 5 == qwerty3()
 
 
 def test_qwerty4():
