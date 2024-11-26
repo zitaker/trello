@@ -29,5 +29,8 @@ jobs:
       - name: Run mypy for type checking
         run: make ci_cd_mypy
 
+      - name: Run flake8 to check with the linter
+        run: make ci_cd_flake8
+
       - name: Stop and clean up
         run: docker compose down
