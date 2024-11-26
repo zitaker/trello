@@ -42,7 +42,7 @@ def qwerty2() -> int:
     return 5
 
 
-def qwerty3 () -> int:
+def qwerty3() -> int:
     """
     Returns the integer 5.
 
