@@ -30,3 +30,6 @@ test:  # Running tests
 
 ci_cd_test:  # Run tests inside Docker container for CI/CD
 	@docker compose exec -T app pytest -x --tb=short -v
+
+ci_cd_mypy:  # Checking type annotations inside a Docker container for CI/CD
+	@docker compose exec -T app mypy .
