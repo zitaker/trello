@@ -12,11 +12,11 @@ def hello_world(request):
     return HttpResponse("Hello, World!")
 
 
-def qwerty():
+def qwerty() -> int:
     return 5
 
 
-def qwerty1():
+def qwerty1() -> int:
     return 5
 
 
@@ -24,13 +24,13 @@ def qwerty2() -> int:
     return 5
 
 
-def qwerty3():
+def qwerty3() -> str:
     return 5
 
 
-def qwerty4():
+def qwerty4() -> int:
     return 5
 
 
-def qwerty5():
+def qwerty5() -> int:
     return 5
