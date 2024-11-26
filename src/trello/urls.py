@@ -17,10 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from .views import hello_world, home
+from .views import create_board, redirect_to_boards
 
 urlpatterns = [
-    path("", home),
+    path("", redirect_to_boards, name="redirect_to_boards"),
     path("admin/", admin.site.urls),
-    path("boards/", hello_world),
+    path("boards/", create_board, name="create_board"),
 ]
