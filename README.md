@@ -23,7 +23,7 @@ There is nothing to be afraid of - this is a learning project, no one will punis
 2) use linters (Flake8 and Pylint are already embedded in the project);
 3) use a code formatter (Black embedded in the project);
 4) specify Google-style docstrings;
-5) the project uses python 3.13.0. If you have a different version of the language, I recommend installing (pyenv) and installing python 3.13.0 in pyenv;
+5) the project uses python 3.13.0. If you have a different version of the language, I recommend installing (pyenv) and installing python 3.13.0 in pyenv (optional requirement);
 6) if you have any questions, please write messages to me, my contacts are listed in the profile.
 
 ---
