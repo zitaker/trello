@@ -17,10 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from .views import create_board, redirect_to_boards
+from .views import CreateBoardView, redirect_to_boards
 
 urlpatterns = [
     path("", redirect_to_boards, name="redirect_to_boards"),
     path("admin/", admin.site.urls),
-    path("boards/", create_board, name="create_board"),
+    path("boards/", CreateBoardView.as_view(), name="create_board"),
 ]

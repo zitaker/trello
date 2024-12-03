@@ -51,15 +51,15 @@ class TestUrls:
         url = reverse("redirect_to_boards")  # URL name for the home page
         response = client.get(url)
         assert response.status_code == 302  # Expecting a redirect
-        assert response.url == reverse(
-            "create_board"
-        )  # Expecting redirect to /boards/
+        assert response.url == reverse("create_board")  # Expecting redirect
 
     def test_create_board_url(self, client) -> None:
-        """Test that the '/boards/' URL maps to the create_board view.
+        """
+        Test that the '/boards/' URL maps to
+        the CreateBoardView class-based view.
 
         This test verifies that the URL for the boards page correctly resolves
-        to the `create_board` view.
+        to the `CreateBoardView` view.
 
         Args:
             client (Client): The test client for sending requests.
