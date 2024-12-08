@@ -1,3 +1,8 @@
+<!--
+This form is used to trigger the creation of a new board. 
+The "show_input" value signals the server to process the request. 
+-->
+
 <form method="POST">
     {% csrf_token %}
     <button type="submit" name="show_input" value="true">Create</button>

@@ -9,8 +9,13 @@
 {% endblock %}
 
 {% block content %}
+<!--The content block of the page for displaying the creation of the board.-->
+
+    <!--If `show_input` is not set (False by default), the button is displayed
+    to create a new board.-->
     {% if not show_input %}
         {% include "partials/form_create_button.html" %}
+    <!--If 'show_input` is True, a form for entering the board name is displayed.-->
     {% else %}
         {% include "partials/form_board_title.html" %}
     {% endif %}

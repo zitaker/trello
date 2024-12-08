@@ -1,6 +1,21 @@
+<!-- 
+This template renders a form for creating a new board.
+It includes a CSRF token for security and a single input field
+to specify the title of the board.
+-->
+
 <form method="POST">
+    <!--
+    The CSRF token is required for Django to protect against
+    Cross-Site Request Forgery attacks.
+    -->
     {% csrf_token %}
+
+    <!-- Label and input field for entering the board title -->
     <label for="board_title">The title of the board:</label>
+
     <input type="text" id="board_title" name="board_title" required>
+
+    <!-- Submit button to create the board -->
     <button type="submit">Create</button>
 </form>
