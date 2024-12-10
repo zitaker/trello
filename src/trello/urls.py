@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from .views import CreateBoardView, redirect_to_boards
+from trello.views import CreateBoardView, redirect_to_boards
 
 urlpatterns = [
     path("", redirect_to_boards, name="redirect_to_boards"),
