@@ -2,15 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}boards{% endblock %}</title>
+    <style>
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5%;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 1rem;
+            z-index: 1000;
+        }
+        .fixed-header button {
+            margin: 5px;
+        }
+        .content {
+            padding-top: 2%;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    </style>
 </head>
 <body>
-    {% block message %}
-        <!-- Placeholder for message block -->
-    {% endblock %}
-    
-    {% block content %}
-        <!-- Placeholder for main content -->
-    {% endblock %}
+    <div class="fixed-header">
+        <button type="button" onclick="window.location.href = '{% url 'create_board' %}';" class="btn">
+            Trello
+        </button>
+        
+        <!--If `show_input` is not set (False by default), the button is displayed
+        to create a new board.-->
+        {% if not show_input %}
+            {% include "partials/form_create_button.html" %}
+        <!--If 'show_input` is True, a form for entering the board name is displayed.-->
+        {% else %}
+            {% include "partials/form_board_title.html" %}
+        {% endif %}
+    </div>
+
+    <div class="content">
+        {% block content %}
+            <!-- Placeholder for main content -->
+        {% endblock %}
+    </div>
 </body>
 </html>

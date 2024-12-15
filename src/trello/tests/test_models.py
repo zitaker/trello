@@ -6,6 +6,7 @@ These tests validate the correct behavior of the Board.
 
 from django.test import TestCase
 from django.utils import timezone
+
 from trello.models import Board
 
 

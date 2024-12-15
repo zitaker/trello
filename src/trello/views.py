@@ -5,8 +5,11 @@ import logging
 from typing import Optional
 
 from django.views import View
-from django.shortcuts import render
+from django.urls import reverse
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest, HttpResponse, HttpResponseRedirect
+
+from trello.models import Board
 
 logger = logging.getLogger(__name__)
 
@@ -45,7 +48,8 @@ class CreateBoardView(View):
         Returns:
             dict: The context dictionary for the template.
         """
-        return {"show_input": show_input, "message": message}
+        boards = Board.objects.all()
+        return {"show_input": show_input, "message": message, "boards": boards}
 
     def get(self, request: HttpRequest) -> HttpResponse:
         """
@@ -64,31 +68,59 @@ class CreateBoardView(View):
         """
         Handles POST requests to create a new board.
 
-        Depending on the submitted data, this method toggles the display
-        of the input field or validates the board title.
-
         Args:
             request (HttpRequest): The HTTP request object containing
                                    POST data.
 
         Returns:
             HttpResponse: A response rendering the 'boards.html' template
-                          with context that includes the input field state
-                          and any relevant messages.
+                          or redirecting to a newly created board's page.
         """
         if "show_input" in request.POST:
+            # Show the form
             context = self.get_context_data(show_input=True)
+            return render(request, self.template_name, context)
+
         elif "board_title" in request.POST:
+            # Creating a new board
             board_title = request.POST.get("board_title", "").strip()
             if board_title:
-                message = f"Transition to the board - '{board_title}'"
+                # Creating a Board object and redirecting it to the board page
+                board, created = Board.objects.get_or_create(title=board_title)
+                if created:
+                    return redirect(
+                        reverse(
+                            "board_detail", kwargs={"board_title": board.title}
+                        )
+                    )
+                else:
+                    # If the board already exists, we display a message
+                    message = f"A board named '{board_title}' already exists!"
             else:
-                message = (
-                    "The board creation button is not active until "
-                    "there is no name!"
-                )
-            context = self.get_context_data(show_input=False, message=message)
-        else:
-            context = self.get_context_data()
+                message = "The name of the board cannot be empty!"
 
-        return render(request, self.template_name, context)
+            # We return the page with the error message
+            context = self.get_context_data(show_input=True, message=message)
+            return render(request, self.template_name, context)
+
+        return render(request, self.template_name, self.get_context_data())
+
+
+class BoardDetailView(View):
+    """Handles the display of a specific board."""
+
+    template_name = "board_detail.html"
+
+    def get(self, request: HttpRequest, board_title: str) -> HttpResponse:
+        """
+        Handles GET requests to display a specific board.
+
+        Args:
+            request (HttpRequest): The HTTP request object.
+            board_title (str): The title of the board to display.
+
+        Returns:
+            HttpResponse: A response rendering the 'board_detail.html' template.
+        """
+        board = get_object_or_404(Board, title=board_title)
+        return render(request, self.template_name, {"board": board})

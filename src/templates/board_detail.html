@@ -1,0 +1,29 @@
+<!--
+    This template is used to display the details of a specific board.
+    
+    Template Inheritance:
+        - Extends the base template: "base.html".
+    
+    Context Variables:
+        - board.title (str): The title of the board to display.
+    
+    Blocks:
+        - title: Displays the title of the board in the HTML <title> tag.
+        - content: Displays the board's title and an option to add a list.
+    
+    Usage:
+        Render this template by passing a context variable `board` containing the 
+        required `title` attribute.
+-->    
+
+{% extends "base.html" %}
+
+{% block title %}
+    {{ board.title }}
+{% endblock %}
+
+{% block content %}
+<!-- Content for displaying board details -->
+<p>{{ board.title }}</p>
+<p>+ Add list</p>
+{% endblock %}

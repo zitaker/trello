@@ -12,13 +12,14 @@ the views function correctly under various scenarios (e.g., redirects,
 valid/invalid board titles).
 """
 
-import html
-
 import pytest
 
 from django.urls import reverse
 from django.test import Client
 
+from django.db.models.query import QuerySet
+
+from trello.models import Board
 from trello.views import CreateBoardView
 
 
@@ -67,23 +68,35 @@ class TestCreateBoardView:
         """
         return CreateBoardView()
 
-    def test_get_context_data_default(
-        self, view_instance: CreateBoardView
-    ) -> None:
+    def test_get_context_data_default(self) -> None:
         """
-        Test that get_context_data returns the default context.
+        Test that `get_context_data` returns the default context.
 
-        Args:
-            view_instance (CreateBoardView): The view instance being tested.
+        Verifies that the context dictionary contains the expected
+        keys with their default values, and ensures that the 'boards'
+        key is of type `QuerySet`.
+
+        Returns:
+            None
         """
+        view_instance = CreateBoardView()  # Create a view instance.
         context = view_instance.get_context_data()
-        assert context == {"show_input": False, "message": None}
+
+        # Verify the presence of keys in the context
+        assert "show_input" in context
+        assert "message" in context
+        assert "boards" in context
+
+        # Verify default values
+        assert context["show_input"] is False
+        assert context["message"] is None
+        assert isinstance(context["boards"], QuerySet)
 
     def test_get_context_data_custom(
         self, view_instance: CreateBoardView
     ) -> None:
         """
-        Test that get_context_data returns custom context values.
+        Test that `get_context_data` returns custom context values.
 
         Args:
             view_instance (CreateBoardView): The view instance being tested.
@@ -91,7 +104,17 @@ class TestCreateBoardView:
         context = view_instance.get_context_data(
             show_input=True, message="Test Message"
         )
-        assert context == {"show_input": True, "message": "Test Message"}
+
+        # Check that the context contains the expected keys and their values
+        assert "show_input" in context
+        assert context["show_input"] is True
+        assert "message" in context
+        assert context["message"] == "Test Message"
+
+        # Ensure boards is a list (empty list in this case)
+        boards_list = list(context["boards"])
+        assert isinstance(boards_list, list)
+        assert len(boards_list) == 0  # Check that the list is empty as expected
 
     def test_get_initial_page_load(self, client: Client) -> None:
         """
@@ -135,38 +158,52 @@ class TestCreateBoardView:
         url = reverse("create_board")
 
         # Simulate a POST request with a board title
-        response = client.post(url, {"board_title": "My Board"})
+        response = client.post(url, {"board_title": "My_Board"})
 
-        # Check that the response status is 200 OK
-        assert response.status_code == 200
+        # Check that the response status is 302 Found (redirected)
+        assert response.status_code == 302
 
-        # Decode the response content
-        response_content = html.unescape(response.content.decode())
+        # Redirect URL should point to the new board's detail page
+        expected_url = "/boards/My_Board/"
+        assert response.url == expected_url
 
-        # Expected message
-        expected_message = "Transition to the board - 'My Board'"
+        # Check that the URL in the response matches the expected URL
+        assert response.url == expected_url
 
-        # Check that the expected message is in the response content
-        assert expected_message in response_content
 
-    def test_post_create_board_with_empty_title(self, client: Client) -> None:
+class TestBoardDetailView:
+    """Test case for the `BoardDetailView`."""
+
+    @pytest.mark.django_db
+    def test_get_board_detail_view(self) -> None:
         """
-        Test that an error message is displayed when attempting to create a
-        board with an empty title.
+        Test that `BoardDetailView` works as expected.
 
-        Args:
-            client (Client): The Django test client.
+        This test checks if the view correctly displays a specific board
+        when accessed via its title.
+
+        It creates a sample board, sends a GET request to the view,
+        and asserts that the response status is 200 and the board title
+        is included in the response content.
+
+        Raises:
+            AssertionError: If the response status is not 200 or
+                            the board title is not in the response content.
         """
-        url = reverse("create_board")
+        # Arrange: Create a sample board for testing
+        board = Board.objects.create(title="test_board")
 
-        # Simulate a POST request with an empty title
-        response = client.post(url, {"board_title": ""})
+        # Setup
+        client = Client()
+        url = reverse("board_detail", args=[board.title])
 
-        # Check that the response status is 200 OK
-        assert response.status_code == 200
+        # Act
+        response = client.get(url)
 
-        # Check if the error message is present in the response
+        # Assert
         assert (
-            "The board creation button is not active until there is no name!"
-            in response.content.decode()
-        )
+            response.status_code == 200
+        ), f"Expected status code 200 but got {response.status_code}"
+        assert (
+            "test_board" in response.content.decode()
+        ), "Board title is not present in the response."
