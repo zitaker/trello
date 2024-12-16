@@ -41,13 +41,14 @@ class TestBoardAdmin:
                 associated admin class is not `BoardAdmin`.
         """
         # Ensure the model is registered
-        assert (
-            Board in site._registry
-        ), "Board model is not registered in admin."
+        assert site.is_registered(
+            Board
+        ), "Board model is not registered in admin."  # pylint: disable=W0212
 
         # Ensure the correct admin class is used
         assert isinstance(
-            site._registry[Board], BoardAdmin
+            site._registry[Board],  # pylint: disable=W0212
+            BoardAdmin,
         ), "Board model is not associated with BoardAdmin class."
 
     def test_board_admin_list_display(self) -> None:

@@ -81,7 +81,7 @@ class CreateBoardView(View):
             context = self.get_context_data(show_input=True)
             return render(request, self.template_name, context)
 
-        elif "board_title" in request.POST:
+        if "board_title" in request.POST:
             # Creating a new board
             board_title = request.POST.get("board_title", "").strip()
             if board_title:
@@ -93,9 +93,8 @@ class CreateBoardView(View):
                             "board_detail", kwargs={"board_title": board.title}
                         )
                     )
-                else:
-                    # If the board already exists, we display a message
-                    message = f"A board named '{board_title}' already exists!"
+                # If the board already exists, we display a message
+                message = f"A board named '{board_title}' already exists!"
             else:
                 message = "The name of the board cannot be empty!"
 
