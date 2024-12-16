@@ -28,7 +28,7 @@ services:
     command: >
       sh -c "
         # First, we perform database migrations
-        python3 manage.py makemigrations &&
+        python3 manage.py makemigrations trello &&
         python3 manage.py migrate &&
 
         # Then we start the Django server
