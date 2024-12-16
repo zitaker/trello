@@ -165,10 +165,9 @@ class TestCreateBoardView:
 
         # Redirect URL should point to the new board's detail page
         expected_url = "/boards/My_Board/"
-        assert response.url == expected_url
-
-        # Check that the URL in the response matches the expected URL
-        assert response.url == expected_url
+        assert (
+            response["Location"] == expected_url
+        ), "Redirected URL does not match the expected URL."
 
 
 class TestBoardDetailView:

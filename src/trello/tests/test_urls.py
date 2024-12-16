@@ -100,7 +100,7 @@ class TestAdminURL:
 
         # Check the redirection URL (usually login page)
         assert (
-            "/admin/login/" in response.url
+            "/admin/login/" in response["Location"]
         ), "Unauthenticated access to admin did not redirect to login page."
 
 
@@ -135,11 +135,9 @@ class TestBoardDetailURL:
         response = client.get(url)
 
         # Check that the status code is 200
-        assert (
-            response.status_code == 200
-        ), (
+        assert response.status_code == 200, (
             "Expected 200 status code for board detail page, got ",
-            f" {response.status_code}."
+            f" {response.status_code}.",
         )
 
         # Check that the board title appears in the response content
