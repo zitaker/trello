@@ -42,8 +42,6 @@ You can open it on: [http://0.0.0.0:8000/boards/](http://0.0.0.0:8000/boards/)
 ```make test```
 
 ---
-### Requirements for code annotation, formatting and linters:
-```pip install -r requirements-dev.txt```
 
 ### Checking type annotations, running the code formatter and linters:
 ```make check```
